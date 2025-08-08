@@ -44,23 +44,26 @@ const ChatListItem = ({ chat, onClick }) => {
         <div onClick={onClick} className="flex items-center p-3 hover:bg-black/10 cursor-pointer transition-colors border-b border-white/10">
             <img src={chat.image} alt={chat.name} className="w-16 h-16 rounded-full object-cover bg-gray-300 mr-4" />
             <div className="flex-grow">
-                <div className="flex justify-between"><h3 className="font-bold text-white text-2xl">{chat.name}</h3><p className="text-sm text-white/60">{lastMessage.timestamp}</p></div>
-                <p className="text-white/70 text-lg truncate">{lastMessage.sender === 'You' ? `You: ${lastMessage.text}` : lastMessage.text}</p>
+                <div className="flex justify-between"><h3 className="font-bold text-white text-2xl">{chat.name}</h3><p className="text-sm text-white/60">{lastMessage?.timestamp}</p></div>
+                {/* --- MODIFIED: Handle case where last message is an image --- */}
+                <p className="text-white/70 text-lg truncate">{lastMessage?.sender === 'You' ? `You: ${lastMessage?.text || '📷 Image'}` : (lastMessage?.text || '📷 Image')}</p>
             </div>
         </div>
     );
 };
 
+// --- MODIFIED: MessageBubble can now display images ---
 const MessageBubble = ({ message, chatType }) => {
     const isYou = message.sender === 'You';
     const bubbleStyles = isYou ? "bg-[#FF1493] text-white self-end" : "bg-[#37474F] text-white self-start";
     const showSenderName = chatType === 'group' && !isYou;
     return (
         <div className={`flex flex-col w-full ${isYou ? 'items-end' : 'items-start'}`}>
-            <div className={`max-w-xs md:max-w-md p-3 rounded-2xl mb-2 ${bubbleStyles}`}>
-                {showSenderName && <div className="text-xs text-pink-400 font-bold">{message.sender}</div>}
-                <p className="text-lg">{message.text}</p>
-                <p className="text-xs text-white/70 text-right mt-1">{message.timestamp}</p>
+            <div className={`max-w-xs md:max-w-md p-1 rounded-2xl mb-2 ${bubbleStyles}`}>
+                {showSenderName && <div className="text-xs text-pink-400 font-bold px-2 pt-1">{message.sender}</div>}
+                {message.image && <img src={message.image} alt="Chat content" className="rounded-xl w-full h-auto" />}
+                {message.text && <p className="text-lg p-2">{message.text}</p>}
+                <p className="text-xs text-white/70 text-right mt-1 px-2 pb-1">{message.timestamp}</p>
             </div>
         </div>
     );
@@ -76,11 +79,35 @@ const ChatListPage = ({ chats, onChatSelect, onNavigateBack }) => (
     </div>
 );
 
+// --- MODIFIED: ChatViewPage now handles image uploads ---
 const ChatViewPage = ({ chat, onNavigateBack, onSendMessage }) => {
     const [inputValue, setInputValue] = useState("");
+    const [imageFile, setImageFile] = useState(null); // --- NEW: State for image file
+    const [imagePreview, setImagePreview] = useState(null); // --- NEW: State for image preview URL
     const messagesEndRef = useRef(null);
+    const fileInputRef = useRef(null); // --- NEW: Ref for hidden file input
+
     useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [chat.messages]);
-    const handleSend = () => { if (inputValue.trim()) { onSendMessage(chat.id, inputValue); setInputValue(""); } };
+    
+    // --- NEW: Handle image selection ---
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImageFile(file);
+            setImagePreview(URL.createObjectURL(file));
+        }
+    };
+
+    // --- MODIFIED: handleSend now sends text and/or image ---
+    const handleSend = () => { 
+        if (inputValue.trim() || imageFile) { 
+            onSendMessage(chat.id, inputValue, imageFile); 
+            setInputValue("");
+            setImageFile(null);
+            setImagePreview(null);
+        } 
+    };
+
     return (
         <div className="w-full max-w-4xl mx-auto flex flex-col h-[90vh] bg-[#37474F] bg-opacity-90 backdrop-blur-sm rounded-2xl shadow-2xl border-2 border-white/20">
             <header className="flex items-center p-3" style={{ backgroundColor: '#FFF8E1' }}>
@@ -90,9 +117,23 @@ const ChatViewPage = ({ chat, onNavigateBack, onSendMessage }) => {
             </header>
             <main className="flex-grow p-4 space-y-2 overflow-y-auto flex flex-col">{chat.messages.map((msg, index) => <MessageBubble key={index} message={msg} chatType={chat.type} />)}<div ref={messagesEndRef} /></main>
             <footer className="p-3 bg-black/20">
+                {/* --- NEW: Image preview --- */}
+                {imagePreview && (
+                    <div className="relative w-32 mb-2">
+                        <img src={imagePreview} alt="Preview" className="rounded-lg"/>
+                        <button onClick={() => {setImageFile(null); setImagePreview(null);}} className="absolute -top-2 -right-2 bg-gray-700 text-white rounded-full w-6 h-6 flex items-center justify-center font-bold">X</button>
+                    </div>
+                )}
                 <div className="flex items-center">
+                    {/* --- NEW: Hidden file input and attachment button --- */}
+                    <input type="file" accept="image/*" ref={fileInputRef} onChange={handleImageChange} className="hidden" />
+                    <button onClick={() => fileInputRef.current.click()} className="mr-3 text-white/80 p-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                    </button>
                     <input type="text" placeholder="Message..." value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()} className="flex-grow p-3 rounded-full bg-white/90 text-gray-800 focus:outline-none" />
-                    <button onClick={handleSend} className="ml-3 bg-[#FF1493] text-white p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
+                    <button onClick={handleSend} className="ml-3 bg-[#FF1493] text-white p-3 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
                 </div>
             </footer>
         </div>
@@ -104,66 +145,77 @@ const WhatsAppPage = ({ onNavigateBack }) => {
     const [chats, setChats] = useState(initialChatData);
     const [activeChatId, setActiveChatId] = useState(null);
 
-    // --- UPDATED FUNCTION TO CALL THE BACKEND ---
-    const handleSendMessage = async (chatId, text) => {
-        const newMessage = { sender: 'You', text, timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) };
+    // --- MODIFIED: handleSendMessage now sends multipart/form-data ---
+    const handleSendMessage = async (chatId, text, imageFile) => {
+        const newMessage = { 
+            sender: 'You', 
+            text, 
+            image: imageFile ? URL.createObjectURL(imageFile) : null, // Use preview URL for optimistic update
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
+        };
 
-        // Optimistically update the UI with the user's message
+        // Optimistically update the UI
         const updatedChats = { ...chats };
         updatedChats[chatId].messages.push(newMessage);
         setChats(updatedChats);
 
+        // --- NEW: Use FormData for multipart requests ---
+        const formData = new FormData();
+        formData.append('persona', chatId); // The backend expects 'persona', which is our chatId
+        if (text) {
+            formData.append('text', text);
+        }
+        if (imageFile) {
+            formData.append('image', imageFile);
+        }
+
         try {
-            // Send the message to your Flask backend
-            const response = await fetch('http://127.0.0.1:5000/chat', {
+            // --- MODIFIED: Fetch call points to the new endpoint and uses FormData ---
+            const response = await fetch('http://127.0.0.1:5000/api/personal-chat', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ 
-                    chatId: chatId, 
-                    message: text 
-                }),
+                // DO NOT set 'Content-Type' header, browser does it automatically for FormData
+                body: formData,
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(`Network response was not ok: ${response.statusText}`);
             }
-
+            console.log(chatId);
             const data = await response.json();
-            const aiResponseText = data.responseText;
 
-            // Create the AI response message object
             const aiResponse = { 
                 sender: chats[chatId].name, 
-                text: aiResponseText, 
+                text: data.text, 
                 timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
             };
             
             // Update the state with the AI's response
-            const finalChats = { ...updatedChats };
-            finalChats[chatId].messages.push(aiResponse);
-            setChats(finalChats);
+            setChats(currentChats => {
+                const finalChats = { ...currentChats };
+                finalChats[chatId].messages.push(aiResponse);
+                return finalChats;
+            });
 
         } catch (error) {
             console.error("Error sending message:", error);
-            // Optionally, add an error message to the chat
             const errorResponse = {
                 sender: 'System',
                 text: 'Sorry, I could not connect to the server.',
                 timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             };
-            const finalChats = { ...updatedChats };
-            finalChats[chatId].messages.push(errorResponse);
-            setChats(finalChats);
+            setChats(currentChats => {
+                const finalChats = { ...currentChats };
+                finalChats[chatId].messages.push(errorResponse);
+                return finalChats;
+            });
         }
     };
 
     if (activeChatId) {
+        // --- MODIFIED: Pass the new onSendMessage to the ChatViewPage ---
         return <ChatViewPage chat={chats[activeChatId]} onNavigateBack={() => setActiveChatId(null)} onSendMessage={handleSendMessage} />;
     }
     return <ChatListPage chats={chats} onChatSelect={setActiveChatId} onNavigateBack={onNavigateBack} />;
 };
 
 export default WhatsAppPage;
-
