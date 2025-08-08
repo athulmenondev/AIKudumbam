@@ -14,13 +14,13 @@
 <!-- - Member 3: [Name] - [College] -->
 
 ### Project Description
-[2-3 lines about what your project does]
+AI Kudumbam – Your Digital Dose of Family Drama is a fun web app where you can chat with your virtual Kerala family. Talk to the whole gang or individual characters like Amma, Ammayi, Ammavan, or Ammumma — each bringing their signature advice, gossip, and love in perfect Manglish.
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+In today’s fast-paced world, many Malayalis living away from home are tragically deprived of the constant stream of unsolicited advice, probing questions, and overbearing affection that only a true Kerala family can provide. We saw this massive non-issue and decided it was time to bring back the drama — digitally.
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+We built AI Kudumbam, a gloriously unnecessary web app that lets you chat with a virtual Kerala family. Choose your favorite family member archetype — Amma, Ammayi, Ammavan, or Ammumma — and receive lovingly intrusive messages in authentic Manglish. Clean your room? They’ll notice. Skipped lunch? They’ll scold. It’s all the family drama you never needed, now available on demand.
 
 ## Technical Details
 ### Technologies/Components Used
