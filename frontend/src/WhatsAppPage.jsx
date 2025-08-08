@@ -11,9 +11,10 @@ import healthConsciousImg from './assets/health concious.jpeg';
 import achaImg from './assets/dad.png';
 import kunjaniyanImg from './assets/aniyan.png';
 import chechiImg from './assets/chechi.jpg';
-import groupIcon from './assets/kudumbam.png';
+import groupIcon from './assets/kudumbam.png'; // Corrected group icon
 
 // --- MOCK CHAT DATA ---
+// This now uses the imported image variables
 const initialChatData = {
     "kudumbam_group": {
         id: "kudumbam_group",
@@ -36,6 +37,21 @@ const initialChatData = {
     "kunjaniyan": { id: "kunjaniyan", name: "Kunjaniyan", image: kunjaniyanImg, type: 'individual', messages: [{ sender: "Kunjaniyan", text: "Chetta/Chechi, 500 roopa tharumo?", timestamp: "Yesterday" }] },
     "loving_chechi": { id: "loving_chechi", name: "Loving Chechi", image: chechiImg, type: 'individual', messages: [{ sender: "Loving Chechi", text: "Did you see Amma's message? Call her back.", timestamp: "Yesterday" }] },
 };
+
+const mockResponses = {
+    "ai_amma": "Nee onnum kazhikunnille? Look at you, so thin!",
+    "inquisitive_ammayi": "So, when are you planning to get married?",
+    "american_ammavan": "In America, we would have automated this conversation by now.",
+    "nri_cousin": "This chat is okay, but back in Canada the apps are much faster.",
+    "adoring_ammumma": "My dear, have you eaten? You look tired.",
+    "njan_ninte_prayathil": "A message? We used to wait for letters for weeks!",
+    "health_conscious_appooppa": "Are you sitting properly? Your back will hurt.",
+    "chill_acha": "It's fine, let it be.",
+    "kunjaniyan": "I'll tell Amma if you don't buy me that game.",
+    "loving_chechi": "Are you okay? Do you want to talk?",
+    "kudumbam_group": "AI Amma: Who left the wet towel on the bed?",
+};
+
 
 // --- WhatsApp UI Components ---
 const ChatListItem = ({ chat, onClick }) => {
@@ -92,7 +108,7 @@ const ChatViewPage = ({ chat, onNavigateBack, onSendMessage }) => {
             <footer className="p-3 bg-black/20">
                 <div className="flex items-center">
                     <input type="text" placeholder="Message..." value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()} className="flex-grow p-3 rounded-full bg-white/90 text-gray-800 focus:outline-none" />
-                    <button onClick={handleSend} className="ml-3 bg-[#FF1493] text-white p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
+                    <button onClick={handleSend} className="ml-3 bg-[#FF1493] text-white p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
                 </div>
             </footer>
         </div>
@@ -103,72 +119,19 @@ const ChatViewPage = ({ chat, onNavigateBack, onSendMessage }) => {
 const WhatsAppPage = ({ onNavigateBack }) => {
     const [chats, setChats] = useState(initialChatData);
     const [activeChatId, setActiveChatId] = useState(null);
-
-    // --- UPDATED FUNCTION TO CALL THE BACKEND ---
-    const handleSendMessage = async (chatId, text) => {
+    const handleSendMessage = (chatId, text) => {
         const newMessage = { sender: 'You', text, timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) };
-
-        // Use the functional form of setChats to avoid state issues
-        setChats(currentChats => {
-            const updatedChats = { ...currentChats };
-            updatedChats[chatId] = {
-                ...updatedChats[chatId],
-                messages: [...updatedChats[chatId].messages, newMessage]
-            };
-            return updatedChats;
-        });
-
-        const formData = new FormData();
-        formData.append('persona', chatId);
-        formData.append('text', text);
-
-        try {
-            const response = await fetch('http://127.0.0.1:5000/api/personal-chat', {
-                method: 'POST',
-                body: formData,
-            });
-
-            if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.statusText}`);
-            }
-
-            const data = await response.json();
-            const aiResponseText = data.text;
-
-            const aiResponse = { 
-                sender: initialChatData[chatId].name, 
-                text: aiResponseText, 
-                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
-            };
-            
-            // Use the functional form again to add the AI response
-            setChats(currentChats => {
-                const finalChats = { ...currentChats };
-                finalChats[chatId] = {
-                    ...finalChats[chatId],
-                    messages: [...finalChats[chatId].messages, aiResponse]
-                };
-                return finalChats;
-            });
-
-        } catch (error) {
-            console.error("Error sending message:", error);
-            const errorResponse = {
-                sender: 'System',
-                text: 'Sorry, I could not connect to the server.',
-                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-            };
-            setChats(currentChats => {
-                const finalChats = { ...currentChats };
-                finalChats[chatId] = {
-                    ...finalChats[chatId],
-                    messages: [...finalChats[chatId].messages, errorResponse]
-                };
-                return finalChats;
-            });
-        }
+        const updatedChats = { ...chats };
+        updatedChats[chatId].messages.push(newMessage);
+        setChats(updatedChats);
+        setTimeout(() => {
+            const character = chats[chatId];
+            const aiResponse = { sender: character.name, text: mockResponses[chatId] || "...", timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) };
+            const finalChats = { ...updatedChats };
+            finalChats[chatId].messages.push(aiResponse);
+            setChats(finalChats);
+        }, 1500);
     };
-
     if (activeChatId) {
         return <ChatViewPage chat={chats[activeChatId]} onNavigateBack={() => setActiveChatId(null)} onSendMessage={handleSendMessage} />;
     }

@@ -14,7 +14,7 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # --- PROMPTS FOR IMAGE ANALYSIS ---
 PERSONA_PROMPTS = {
-   "AI_Amma": """
+   "ai_amma": """
        You are AI Amma, a caring but slightly critical Keralite mother. Your primary concerns are cleanliness, whether the person has eaten, and their sleep schedule.
        - Analyze the user's room from the image.
        - If the room is messy, express disapproval in a loving way using authentic Manglish phrases like: Nee enthina ivide ingane valichu vaari ittirikunne? or Ee muriyokke onnu vrithiyaakki vechude ninakku?
@@ -196,6 +196,7 @@ def handle_group_chat():
         random.shuffle(personas)
 
         for persona_key in personas:
+            print("taking a random person")
             try:
                 system_prompt = prompt_dict[persona_key]
                 
