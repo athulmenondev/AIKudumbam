@@ -1,0 +1,80 @@
+# =========================================================================
+# === General & OS-specific ===
+# =========================================================================
+# Logs and databases
+*.log
+*.sql
+*.sqlite3
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# =========================================================================
+# === IDE & Editor Config ===
+# =========================================================================
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# =========================================================================
+# === Frontend (React) ===
+# Located in /frontend/
+# =========================================================================
+# Dependency directories
+frontend/node_modules/
+
+# Production build folder
+frontend/build/
+
+# Test reports
+frontend/coverage/
+
+# Environment variables
+# These files can contain sensitive API keys.
+# A .env.example file with dummy values should be committed instead.
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Logs
+npm-debug.log*
+yarn-error.log
+yarn-debug.log
+
+# =========================================================================
+# === Backend (Python/Flask) ===
+# Located in /backend/
+# =========================================================================
+# Virtual environment
+# Common names include venv, env, .venv
+# This contains all installed packages and should be regenerated from requirements.txt
+/backend/venv/
+/backend/env/
+/backend/.venv/
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Instance folder (for Flask configuration, dbs, etc.)
+instance/
+/backend/instance/
+
+# Environment variables
+# Similar to the frontend, these often contain secrets.
+.flaskenv
+
+# Testing
+.pytest_cache/
+.coverage
+
+# Documentation build
+/backend/docs/_build/
