@@ -153,8 +153,8 @@ Frontend UI → Backend API → Persona Preparation → AI Model Calls → Respo
 [Add any extra demo materials/links]
 
 ## Team Contributions
-- Sandra Suresh Panicker: Front-end handling , connectivity to backend 
-- athul s Menon: Backend handling , API generation and connectivity
+- Sandra Suresh Panicker – Responsible for front-end development, including UI/UX design, component creation, and ensuring smooth integration with the backend for seamless user interaction.
+- Athul S Menon – Responsible for backend development, including server-side logic, API creation, database handling, and establishing secure connectivity between the backend and the frontend.Athul S Menon – Responsible for backend development, including server-side logic, API creation, database handling, and establishing secure connectivity between the backend and the frontend.
 
 Future Enhancements
 
