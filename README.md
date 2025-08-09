@@ -25,23 +25,76 @@ We built AI Kudumbam, a gloriously unnecessary web app that lets you chat with a
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+Languages used: Python, JavaScript
+
+Frameworks used: Flask (backend), React.js (frontend)
+
+Libraries used:
+
+    Google Generative AI / Gemini API
+
+    OpenCV (for basic image preprocessing)
+
+    Axios (for API calls in frontend)
+
+    dotenv (for environment variable management)
+
+Tools used:
+
+    VS Code (development)
+
+    Git & GitHub (version control)
+
+    Postman (API testing)
+
+    Node.js & npm (package management)
 
 For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+Main components:
 
+    Laptop/PC (for development)
+
+    Webcam or smartphone camera (for capturing room images)
+
+Specifications:
+
+    Minimum 8 GB RAM, Quad-core processor
+
+    Stable internet connection
+
+Tools required:
+
+    USB cable or wireless transfer for images
+
+    Optional: external storage for backups
+    
 ### Implementation
 For Software:
 # Installation
-[commands]
+# Clone the repository
+git clone https://github.com/your-username/your-project.git
+
+# Navigate to project directory
+cd your-project
+
+# Backend setup
+cd backend
+pip install -r requirements.txt
+
+# Frontend setup
+cd ../frontend
+npm install
+
 
 # Run
-[commands]
+# Start backend server
+cd backend
+python app.py
+
+# Start frontend
+cd ../frontend
+npm start
+
 
 ### Project Documentation
 For Software:
