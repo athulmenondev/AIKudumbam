@@ -109,27 +109,40 @@ Shows the watsapp-like chat interface page with the family group , and indiviadu
 Shows the chat with AI Amma , user sharing an image and mother scolding as a reply.
 
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
+![Workflow](https://github.com/Sandra-004/AIKudumbam/blob/main/screenshots/ss4.png)
+1. User’s Browser (Frontend)
 
-For Hardware:
+    User interacts with the AI Kudumbam UI in their browser.
 
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
+    The UI is the entry point for sending a request to start the group chat process.
 
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
+2. Our Server (Python Backend)
 
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
+    The browser sends a POST request to /api/group-chat.
 
-![Build](Add photos of build process here)
-*Explain the build steps*
+    The backend then:
 
-![Final](Add photo of final product here)
-*Explain the final build*
+        Prepares the image (likely the room photo from the user).
+
+        Shuffles personas so each persona will give a different, randomized reply.
+
+3. Loop Over Personas
+
+    For each persona in the shuffled list:
+
+        The server sends the image and prompt to Google Gemini API via Google AI Cloud.
+
+        Gemini returns a persona-specific response based on the image and instructions.
+
+        This loop repeats for all personas in the set.
+
+4. Final Output
+
+    After all personas have responded, the results can be aggregated for the user in the frontend, simulating a family group chat where each persona reacts differently to the same image.
+
+This is basically:
+
+Frontend UI → Backend API → Persona Preparation → AI Model Calls → Responses Returned.
 
 ### Project Demo
 # Video
@@ -143,6 +156,18 @@ For Hardware:
 - [Name 1]: [Specific contributions]
 - [Name 2]: [Specific contributions]
 - [Name 3]: [Specific contributions]
+
+Future Enhancements
+
+    Group Chat Feature: We plan to implement a real-time group chat functionality, allowing multiple users to communicate seamlessly within dedicated chat rooms. This will include:
+
+        Group creation and management
+
+        Real-time messaging with WebSockets
+
+        Media sharing (images, files)
+
+        User roles (admin, moderator, member)
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
