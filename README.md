@@ -102,11 +102,11 @@ For Software:
 # Screenshots (Add at least 3)
 ![screenshot1](https://github.com/Sandra-004/AIKudumbam/blob/main/screenshots/ss1.png)-Landing Page
 This shows our vibrant landing page describing each character?family memeber briefly with their images as well.
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot2](https://github.com/Sandra-004/AIKudumbam/blob/main/screenshots/ss2.png)-Chat Interface page
+Shows the watsapp-like chat interface page with the family group , and indiviadual characters.
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot3](https://github.com/Sandra-004/AIKudumbam/blob/main/screenshots/ss3.png) -Chat with a character 
+Shows the chat with AI Amma , user sharing an image and mother scolding as a reply.
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
