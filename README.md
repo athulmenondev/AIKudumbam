@@ -146,11 +146,8 @@ Frontend UI → Backend API → Persona Preparation → AI Model Calls → Respo
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
-
-# Additional Demos
-[Add any extra demo materials/links]
+[ https://youtu.be/fGqOYEFF58w ]
+The working of the app is shown here.
 
 ## Team Contributions
 - Sandra Suresh Panicker – Responsible for front-end development, including UI/UX design, component creation, and ensuring smooth integration with the backend for seamless user interaction.
