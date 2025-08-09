@@ -153,9 +153,8 @@ Frontend UI → Backend API → Persona Preparation → AI Model Calls → Respo
 [Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Sandra Suresh Panicker: Front-end handling , connectivity to backend 
+- athul s Menon: Backend handling , API generation and connectivity
 
 Future Enhancements
 
