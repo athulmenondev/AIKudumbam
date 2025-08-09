@@ -1,16 +1,16 @@
 <img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
 
-# [AIKudumbam] 🎯
+# AIKudumbam 🎯
 
 
 ## Basic Details
-### Team Name: [TechNinja]
+### Team Name: TechNinja
 
 
 ### Team Members
-- Team Lead: [Sandra Suresh] - [NSS College of Engneering, Palakkad]
-- Member 2: [Athul S Menon] - [NSS College of Engneering, Palakkad]
+- Team Lead: Sandra Suresh - [NSS College of Engneering, Palakkad]
+- Member 2: Athul S Menon - [NSS College of Engneering, Palakkad]
 <!-- - Member 3: [Name] - [College] -->
 
 ### Project Description
@@ -100,9 +100,8 @@ npm start
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
-
+![screenshot1](https://github.com/Sandra-004/AIKudumbam/blob/main/screenshots/ss1.png)-Landing Page
+This shows our vibrant landing page describing each character?family memeber briefly with their images as well.
 ![Screenshot2](Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*
 
