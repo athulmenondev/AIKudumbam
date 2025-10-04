@@ -1,174 +1,135 @@
-<img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
+# 🤖 AI Kudumbam (AI Family)
 
+### _"The well-meaning nags of a Keralite family, now powered by AI."_
 
-# AIKudumbam 🎯
+## Screenshots
 
+![AI Kudumbam ss1](https://github.com/athulmenondev/AIKudumbam/blob/main/screenshots/ss1.png)
+![AI Kudumbam ss2](https://github.com/athulmenondev/AIKudumbam/blob/main/screenshots/ss2.png)
+![AI Kudumbam ss3](https://github.com/athulmenondev/AIKudumbam/blob/main/screenshots/ss3.png)
+---
 
-## Basic Details
-### Team Name: TechNinja
 
 
-### Team Members
-- Team Lead: Sandra Suresh - [NSS College of Engneering, Palakkad]
-- Member 2: Athul S Menon - [NSS College of Engneering, Palakkad]
-<!-- - Member 3: [Name] - [College] -->
 
-### Project Description
-AI Kudumbam – Your Digital Dose of Family Drama is a fun web app where you can chat with your virtual Kerala family. Talk to the whole gang or individual characters like Amma, Ammayi, Ammavan, or Ammumma — each bringing their signature advice, gossip, and love in perfect Manglish.
+## 🤔 What is this?
 
-### The Problem (that doesn't exist)
-In today’s fast-paced world, many Malayalis living away from home are tragically deprived of the constant stream of unsolicited advice, probing questions, and overbearing affection that only a true Kerala family can provide. We saw this massive non-issue and decided it was time to bring back the drama — digitally.
+**AI Kudumbam** is a delightfully useless web application that lovingly simulates a classic Keralite family gathering. Ever missed getting unsolicited advice about your messy room, your career, or why you aren't married yet? No? Well, now you can experience it on demand!
 
-### The Solution (that nobody asked for)
-We built AI Kudumbam, a gloriously unnecessary web app that lets you chat with a virtual Kerala family. Choose your favorite family member archetype — Amma, Ammayi, Ammavan, or Ammumma — and receive lovingly intrusive messages in authentic Manglish. Clean your room? They’ll notice. Skipped lunch? They’ll scold. It’s all the family drama you never needed, now available on demand.
+Simply choose a family persona and upload a photo of your room. Our advanced AI vision model will analyze the image and generate a unique, in-character response in authentic "Manglish" (Malayalam-English).
 
-## Technical Details
-### Technologies/Components Used
-For Software:
-Languages used: Python, JavaScript
-
-Frameworks used: Flask (backend), React.js (frontend)
-
-Libraries used:
-
-    Google Generative AI / Gemini API
-
-    OpenCV (for basic image preprocessing)
-
-    Axios (for API calls in frontend)
-
-    dotenv (for environment variable management)
-
-Tools used:
-
-    VS Code (development)
-
-    Git & GitHub (version control)
-
-    Postman (API testing)
-
-    Node.js & npm (package management)
-
-For Hardware:
-Main components:
-
-    Laptop/PC (for development)
-
-    Webcam or smartphone camera (for capturing room images)
-
-Specifications:
-
-    Minimum 8 GB RAM, Quad-core processor
-
-    Stable internet connection
-
-Tools required:
-
-    USB cable or wireless transfer for images
-
-    Optional: external storage for backups
-    
-### Implementation
-For Software:
-# Installation
-# Clone the repository
-git clone https://github.com/your-username/your-project.git
-
-# Navigate to project directory
-cd your-project
-
-# Backend setup
-cd backend
-pip install -r requirements.txt
-
-# Frontend setup
-cd ../frontend
-npm install
-
-
-# Run
-# Start backend server
-cd backend
-python app.py
-
-# Start frontend
-cd ../frontend
-npm start
-
-
-### Project Documentation
-For Software:
-
-# Screenshots (Add at least 3)
-![screenshot1](https://github.com/Sandra-004/AIKudumbam/blob/main/screenshots/ss1.png)-Landing Page
-This shows our vibrant landing page describing each character?family memeber briefly with their images as well.
-![Screenshot2](https://github.com/Sandra-004/AIKudumbam/blob/main/screenshots/ss2.png)-Chat Interface page
-Shows the watsapp-like chat interface page with the family group , and indiviadual characters.
-
-![Screenshot3](https://github.com/Sandra-004/AIKudumbam/blob/main/screenshots/ss3.png) -Chat with a character 
-Shows the chat with AI Amma , user sharing an image and mother scolding as a reply.
-
-# Diagrams
-![Workflow](https://github.com/Sandra-004/AIKudumbam/blob/main/screenshots/ss4.png)
-1. User’s Browser (Frontend)
-
-    User interacts with the AI Kudumbam UI in their browser.
-
-    The UI is the entry point for sending a request to start the group chat process.
-
-2. Our Server (Python Backend)
-
-    The browser sends a POST request to /api/group-chat.
-
-    The backend then:
-
-        Prepares the image (likely the room photo from the user).
-
-        Shuffles personas so each persona will give a different, randomized reply.
-
-3. Loop Over Personas
-
-    For each persona in the shuffled list:
-
-        The server sends the image and prompt to Google Gemini API via Google AI Cloud.
-
-        Gemini returns a persona-specific response based on the image and instructions.
-
-        This loop repeats for all personas in the set.
-
-4. Final Output
-
-    After all personas have responded, the results can be aggregated for the user in the frontend, simulating a family group chat where each persona reacts differently to the same image.
-
-This is basically:
-
-Frontend UI → Backend API → Persona Preparation → AI Model Calls → Responses Returned.
-
-### Project Demo
-# Video
-[ https://youtu.be/fGqOYEFF58w ]
-The working of the app is shown here.
-
-## Team Contributions
-- Sandra Suresh Panicker – Responsible for front-end development, including UI/UX design, component creation, and ensuring smooth integration with the backend for seamless user interaction.
-- Athul S Menon – Responsible for backend development, including server-side logic, API creation, database handling, and establishing secure connectivity between the backend and the frontend.Athul S Menon – Responsible for backend development, including server-side logic, API creation, database handling, and establishing secure connectivity between the backend and the frontend.
-
-Future Enhancements
-
-    Group Chat Feature: We plan to implement a real-time group chat functionality, allowing multiple users to communicate seamlessly within dedicated chat rooms. This will include:
-
-        Group creation and management
-
-        Real-time messaging with WebSockets
-
-        Media sharing (images, files)
-
-        User roles (admin, moderator, member)
+This project solves no real-world problem. It's a humorous, interactive celebration of technology, culture, and the enduring love hidden within a family's well-meaning concerns.
 
 ---
-Made with ❤️ at TinkerHub Useless Projects 
 
-![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
-![Static Badge](https://img.shields.io/badge/UselessProjects--25-25?link=https%3A%2F%2Fwww.tinkerhub.org%2Fevents%2FQ2Q1TQKX6Q%2FUseless%2520Projects)
+## 👨‍👩‍👧‍👦 Meet the Kudumbam
 
+Choose your destiny. Who do you want to hear from today?
 
+* **AI Amma (Mom):** The OG. Her analysis will focus on cleanliness, whether you've eaten, and if you're getting enough sleep. She'll spot a stray cup from a mile away.
+* **The Inquisitive Ammayi (Nosy Aunty):** She has a Ph.D. in forensic analysis of relatives' rooms. She'll use clues (books, gadgets, decor) to ask about your job, salary, and marriage prospects.
+* **The "Njan-Ninte-Prayathil" Ammavan (Uncle):** The "When-I-Was-Your-Age" Uncle. He'll look at your modern comforts (AC, fancy chair, laptop) and dismiss them with a story about his own difficult past.
+* **The Adoring Ammumma (Grandma):** Pure, unconditional love. Her only concern is if you've eaten properly and are healthy. She'll probably mistake your laundry pile for a cute pet.
+
+---
+
+## 💻 Tech Stack
+
+* **Frontend:** React (Vite) + Tailwind CSS
+* **Backend:** Python (FastAPI)
+* **The Brains:** Google Gemini API
+
+---
+
+## 🚀 Getting Started: Running Locally
+
+**Important Note:** This project uses the Google Gemini API, which requires a personal API key. For this reason, **AI Kudumbam is not hosted publicly**. To experience the app, you must run it on your local machine using your own free API key.
+
+### Prerequisites
+
+* [Git](https://git-scm.com/)
+* [Node.js](https://nodejs.org/en/) (v18 or higher)
+* [Python](https://www.python.org/downloads/) (v3.9 or higher)
+* A **Google Gemini API Key**. You can get one for free from [Google AI Studio](https://aistudio.google.com/app/apikey).
+
+### Installation & Setup
+
+**1. Clone the Repository**
+```bash
+git clone https://github.com/athulmenondev/AIKudumbam
+cd ai-kudumbam
+```
+
+**2. Backend Setup**
+
+Navigate to the backend directory, create a virtual environment, and install the dependencies.
+
+```bash
+cd backend
+
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows, use: venv\Scripts\activate
+
+# Install required packages
+pip install -r requirements.txt
+```
+
+Now, create a `.env` file in the `backend` directory to store your API key.
+
+```
+# backend/.env
+GOOGLE_API_KEY="PASTE_YOUR_GEMINI_API_KEY_HERE"
+```
+
+**3. Frontend Setup**
+
+Open a *new terminal window* and navigate to the frontend directory.
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+```
+
+### ▶️ Running the Application
+
+You need to have both the backend and frontend servers running simultaneously.
+
+* **In your backend terminal:**
+    ```bash
+    # Make sure you are in the 'backend' directory with the virtual environment active
+    uvicorn main:app --reload
+    ```
+    The backend API will now be running at `http://127.0.0.1:8000`.
+
+* **In your frontend terminal:**
+    ```bash
+    # Make sure you are in the 'frontend' directory
+    npm run dev
+    ```
+    The React development server will start, and your browser should open to `http://localhost:5173`.
+
+That's it! You can now upload a photo or chat with anyone and get lovingly judged by your new AI family.
+
+---
+
+## 📜 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+## ✨ Acknowledgements
+
+* To every Keralite family for being the endless source of inspiration.
+* To the developers behind the amazing tools that made this possible.
+
+---
+
+<br>
+
+<div align="center">
+Made with ❤️ and a little bit of chammandi.
+</div>
